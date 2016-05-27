@@ -1,18 +1,119 @@
 window.onload=function (){
 	
-	var bouton = document.getElementById("btm");
-	//console.log(bouton);
-	
-	bouton.onclick = requestServer;
+		//verifier s'il y'a une notification à recevoir
+		setInterval(function(){
+			//requestServer("request", "demande_notification.php");
+			
+		},
+		10000
+	);
 	
 }
 
-function requestServer(){
-	console.log("lol")
-	var xhr; 
+
+function comptePackSimple(){
+	var div_pack = document.getElementById("divPackSimple");
+	var div_compte = document.getElementById("divCompteSimple");
+	div_pack.type = "hidden";
+	div_compte.type = "show";
+
+	//recuperer le numero du compte à l'appui du bouton valider
+	var btm = document.getElementById("btnPackSimple");
+	var numCompte = document.getElementById("numCompteSimple").value;
+	btm.onclick = requestServer("pack=simple&compte="+numCompte, "acheterPack.php", function(){
+
+	});
+}
+
+function comptePackPreminium(){
+	var pack = document.getElementById("btnPackPreminium");
+}
+
+function comptePackGold(){
+	var pack = document.getElementById("btnPackGold");
+}
+
+
+/*
+	authentification du client
+*/
+function sauthentifier(){
 	var login = document.getElementById("login").value;
-	var pwd = document.getElementById("pwd").value;
+	var pwd = document.getElementById("password").value;
 	var data = "login="+login+"&password="+pwd;
+	requestServer(data, "authentification.php", function(){
+
+	});
+}
+
+function consulterSolde(){
+	console.log("lslksks,")
+	var compte = document.getElementById("numCompte").value;
+	var data = "numCompte="+compte;
+	requestServer(data, "consulterSolde.php", function(){
+
+	});
+
+}
+
+/*
+	transferer du credit compte à compte
+*/
+function transfert(){
+	var source = document.getElementById("numCompte1").value;
+	var dest = document.getElementById("numCompte2").value;
+	var code = document.getElementById("codeSecret").value;
+	var montant = document.getElementById("montant").value;
+	var data = "source="+source+"&dest="+dest+"&code="+code+"&montant="+montant;
+	requestServer(data, "transfert.php");
+}
+
+/*
+	Approuver le pack
+*/
+function approuver_check(){
+	var compte = document.getElementById("numCompte").value;
+	var data = "compte="+compte;
+	requestServer(data, "trait_approuvercheck.php");
+}
+
+/*
+	notification de mouvement
+*/
+function notification(){
+	var quetsion = 6;
+}
+
+/*
+	verifier le pack
+*/
+function verifier_pack(){
+
+}
+
+function acheter_pack(){
+
+}
+
+function se_desabonner(){
+
+}
+
+function callback_authen(){
+
+}
+
+function callback_transfert(){
+
+}
+
+function callback_pack(){
+
+}
+
+
+function requestServer(data, page, callback){
+	var xhr; 
 
 		    try {  
 		    	xhr = new ActiveXObject('Msxml2.XMLHTTP');   
@@ -42,7 +143,7 @@ function requestServer(){
 			       	
 			        if(xhr.status  == 200) {
 			        	var valeur = xhr.responseText;
-			           console.log("resultat"+valeur);
+			           
 			          // document.getElementById("res1").innerText = valeur;
 			           document.body.innerHTML = valeur;
 			       	}
@@ -52,11 +153,11 @@ function requestServer(){
 		        }
 		    }; 
 		 
-		xhr.open("POST", "http://192.168.1.102/sms-banking/authentification.php",  true); 
+		xhr.open("POST", "http://192.168.1.110/mb_esp/serveur/"+page,  true); 
         xhr.setRequestHeader("Access-Control-Allow-Methods", "REQUEST,GET,HEAD,OPTIONS,POST,PUT");
         xhr.setRequestHeader("Access-Control-Allow-Headers","Content-Type, Access-Control-Allow-Headers,Access-Control-Allow-Origin, Authorization, X-Requested-With, Access-Control-Allow-Methods");
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        console.log(data);
+       // console.log(data);
 		xhr.send(data);
 		 	
 }

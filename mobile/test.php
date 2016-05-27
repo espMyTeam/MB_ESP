@@ -5,7 +5,7 @@
     header('Access-Control-Allow-Credentials: true');
     
     if(isset($_POST['login']) && isset($_POST['pwd'])){
-    	//authentification
-    	print_r($_POST);
+    	//print_r($_POST); //traitement
+
     }
 ?>

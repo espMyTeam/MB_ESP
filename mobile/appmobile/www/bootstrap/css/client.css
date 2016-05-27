@@ -1,38 +1,28 @@
-@media (min-width: 768px) {
-  .navbar-collapse {
-    height: auto;
-    border-top: 0;
-    box-shadow: none;
-    max-height: none;
-    padding-left:0;
-    padding-right:0;
-  }
-  .navbar-collapse.collapse {
-    display: block !important;
-    width: auto !important;
-    padding-bottom: 0;
-    overflow: visible !important;
-  }
-  .navbar-collapse.in {
-    overflow-x: visible;
-  }
-
-.navbar
-{
-	max-width:300px;
-	margin-right: 0;
-	margin-left: 0;
-}	
-
-.navbar-nav,
-.navbar-nav > li,
-.navbar-left,
-.navbar-right,
-.navbar-header
-{float:none !important;}
-
-.navbar-right .dropdown-menu {left:0;right:auto;}
-.navbar-collapse .navbar-nav.navbar-right:last-child {
-    margin-right: 0;
+.row div {
+    height: 200px;
+    -webkit-transition: width 0.3s ease, margin 0.3s ease;
+    -moz-transition: width 0.3s ease, margin 0.3s ease;
+    -o-transition: width 0.3s ease, margin 0.3s ease;
+    transition: width 0.3s ease, margin 0.3s ease;
 }
+
+.span0 {
+    width: 0;
+    margin-left: 0;
+}
+
+#colPush {
+    background-color: #A6BFBA;
+}
+
+#colMain {
+    background-color: #DE4124;
+}
+
+#trig {
+    margin: 50px;
+}
+
+.row div + div {
+    margin-left: 0;
 }
