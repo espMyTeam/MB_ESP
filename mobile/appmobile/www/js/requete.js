@@ -41,9 +41,17 @@ function sauthentifier(){
 	var login = document.getElementById("login").value;
 	var pwd = document.getElementById("password").value;
 	var data = "login="+login+"&password="+pwd;
-	requestServer(data, "authentification.php", function(){
 
-	});
+	//pour le débugage: admin et admin (juste pour la présentation)
+	if(login=="admin" && pwd=="admin"){
+		document.location.href="client.html";
+	}else{
+			requestServer(data, "authentification.php", function(){
+
+		});
+	}
+
+	
 }
 
 function consulterSolde(){
